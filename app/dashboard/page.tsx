@@ -2,6 +2,7 @@
 
 import { useSession, signOut } from "next-auth/react";
 import React from "react";
+import Navbar from "../components/Navbar";
 
 const page = () => {
   const { data } = useSession();
@@ -9,6 +10,8 @@ const page = () => {
 
   return (
     <div>
+   <Navbar />
+
       this is dashboard
       <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
         <div className="flex flex-col align-center gap-2">
