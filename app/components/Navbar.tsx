@@ -1,7 +1,6 @@
+import Link from "next/link";
 
-
-export default function Navbar() {
-
+export default function Navbar({ user, signOut }: any) {
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
@@ -27,33 +26,10 @@ export default function Navbar() {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <a>Parent</a>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
-          </ul>
-        </div>
-        <a className="btn btn-ghost text-xl">Next Auth</a>
-      </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <a>Item 1</a>
-          </li>
-          <li>
+           <Link href="/user">
+            <li>User Page</li>
+          </Link>
+          {/* <li>
             <details>
               <summary>Parent</summary>
               <ul className="p-2">
@@ -65,14 +41,55 @@ export default function Navbar() {
                 </li>
               </ul>
             </details>
-          </li>
+          </li> */}
+          <Link href="/editor">
+            <li>Editor Page</li>
+          </Link>
+          <Link href="/admin">
           <li>
-            <a>Item 3</a>
+            Admin Page
           </li>
+          </Link>
+          </ul>
+        </div>
+        <a href="/dashboard" className="btn btn-ghost text-xl">
+          Next Auth
+        </a>
+      </div>
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal px-1 gap-4">
+          <Link href="/user">
+            <li>User Page</li>
+          </Link>
+          {/* <li>
+            <details>
+              <summary>Parent</summary>
+              <ul className="p-2">
+                <li>
+                  <a>Submenu 1</a>
+                </li>
+                <li>
+                  <a>Submenu 2</a>
+                </li>
+              </ul>
+            </details>
+          </li> */}
+          <Link href="/editor">
+            <li>Editor Page</li>
+          </Link>
+          <Link href="/admin">
+          <li>
+            Admin Page
+          </li>
+          </Link>
         </ul>
       </div>
-      <div className="navbar-end">
-        <a className="btn">Button</a>
+      <div className="navbar-end flex gap-2">
+        <p>Welcome {user?.name}</p>
+        <p>Role: {user?.role}</p>
+        <a onClick={signOut} className="btn">
+          Sign Out
+        </a>
       </div>
     </div>
   );
