@@ -9,11 +9,23 @@ export async function middleware(req: NextRequest) {
   const isAuth = !!token;
   const isAuthPage = req.nextUrl.pathname.startsWith("/login");
 
+  const role = token?.role as string;
+
+  const pathname = req.nextUrl.pathname;
+
   if (isAuth && isAuthPage) {
     return NextResponse.redirect(new URL("/dashboard", req.url));
   }
 
-  if (!isAuth && !isAuthPage && req.nextUrl.pathname.startsWith("/dashboard")) {
+  if (pathname.startsWith("/admin") && role !== "admin") {
+    return NextResponse.redirect(new URL("/unauthorized", req.url));
+  }
+
+  if (pathname.startsWith("/editor") && role !== "admin" && role !== "editor") {
+    return NextResponse.redirect(new URL("/unauthorized", req.url));
+  }
+
+  if (!isAuth && !isAuthPage && pathname.startsWith("/dashboard")) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
