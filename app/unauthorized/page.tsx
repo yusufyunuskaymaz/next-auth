@@ -1,13 +1,24 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const page = () => {
-  return (
-    <div className="flex justify-center">
+  const router = useRouter();
 
-    <div className="flex justify-center text-center flex-col">
-      <h1 className="text-8xl">401</h1>
-      <h2 className="text-2xl">You don't have permission to view this page!</h2>
-    </div>
+  return (
+    <div className="h-[95vh]">
+      <div className="h-full flex justify-center">
+        <div className="flex justify-center text-center flex-col gap-2 items-center">
+          <h1 className="text-8xl">401</h1>
+          <h2 className="text-2xl">
+            You don't have permission to view this page!
+          </h2>
+          <button onClick={() => router.back()} className="btn btn-dash">
+            Go Back
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
