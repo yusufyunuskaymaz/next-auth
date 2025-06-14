@@ -7,7 +7,7 @@ const page = () => {
   const router = useRouter();
 
   return (
-    <div className="h-[95vh]">
+    <div className="h-[95vh] bg-gray-900">
       <div className="h-full flex justify-center">
         <div className="flex justify-center text-center flex-col gap-2 items-center">
           <h1 className="text-8xl">401</h1>
