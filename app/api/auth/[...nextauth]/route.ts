@@ -36,7 +36,7 @@ const handler = NextAuth({
     const decode_jwt = jwtDecode(idToken) as any
 
     const roles = decode_jwt["https://localhost:3000/roles"] || [];
-    token.role = roles[0] || "user";
+    token.role = roles[0]
     token.accessToken = account.access_token;
     token.userId = user?.id;
   }
