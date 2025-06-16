@@ -1,6 +1,13 @@
 import Link from "next/link";
+import { INavbar } from "../types/user";
 
-export default function Navbar({ user, signOut }: any) {
+export default function Navbar({
+  user,
+  signOut,
+}: {
+  user: INavbar;
+  signOut: () => void;
+}) {
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
@@ -26,10 +33,10 @@ export default function Navbar({ user, signOut }: any) {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
-           <Link href="/user">
-            <li>User Page</li>
-          </Link>
-          {/* <li>
+            <Link href="/user">
+              <li>User Page</li>
+            </Link>
+            {/* <li>
             <details>
               <summary>Parent</summary>
               <ul className="p-2">
@@ -42,14 +49,12 @@ export default function Navbar({ user, signOut }: any) {
               </ul>
             </details>
           </li> */}
-          <Link href="/editor">
-            <li>Editor Page</li>
-          </Link>
-          <Link href="/admin">
-          <li>
-            Admin Page
-          </li>
-          </Link>
+            <Link href="/editor">
+              <li>Editor Page</li>
+            </Link>
+            <Link href="/admin">
+              <li>Admin Page</li>
+            </Link>
           </ul>
         </div>
         <a href="/dashboard" className="btn btn-ghost text-xl">
@@ -78,9 +83,7 @@ export default function Navbar({ user, signOut }: any) {
             <li>Editor Page</li>
           </Link>
           <Link href="/admin">
-          <li>
-            Admin Page
-          </li>
+            <li>Admin Page</li>
           </Link>
         </ul>
       </div>

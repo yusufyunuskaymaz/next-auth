@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import Navbar from "./Navbar";
 import { signOut, useSession } from "next-auth/react";
+import { INavbar } from "../types/user";
 
 export default function ConditionalNavbar() {
   const pathname = usePathname();
@@ -14,7 +15,7 @@ export default function ConditionalNavbar() {
   }
 
   const { data } = useSession();
-  const user = data?.user;
+  const user = data?.user as INavbar;
 
   const signOutApp = () => {
     signOut({ callbackUrl: "/login" });
