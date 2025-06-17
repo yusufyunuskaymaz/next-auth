@@ -1,55 +1,55 @@
-# Auth0 Yetkilendirme Sistemi - Next.js & NextAuth.js
+# Auth0 Authorization System – Next.js & NextAuth.js
 
-Bu proje, OAuth tabanlı kimlik doğrulama ve rol bazlı yetkilendirme sistemi geliştirmek amacıyla hazırlanmıştır. Uygulama, Auth0 üzerinden kullanıcı yönetimi yapar, NextAuth.js ile oturum kontrolü sağlar ve Next.js middleware yapısıyla route'ları korur. Proje, SOLID prensiplerine ve 12 Factor App ilkelerine uygun şekilde yapılandırılmıştır.
+This project implements an OAuth-based authentication and role-based authorization system using Auth0 and NextAuth.js. It restricts route access via JWT session validation and Next.js middleware. The architecture follows SOLID principles and adheres to 12 Factor App standards.
 
-## 🔧 Kullanılan Teknolojiler
+## 🔧 Technologies Used
 
 - **Next.js 14+ (App Router)**
 - **NextAuth.js**
 - **Auth0 (OAuth Provider)**
 - **JWT (JSON Web Token)**
 - **TypeScript**
-- **TailwindCSS** (Login UI)
+- **TailwindCSS** (for login UI)
 - **Docker**
-- **.env yapılandırması**
-- **Git / GitHub Flow (dev/v1.0.0 → prod/v1.0.0)**
+- **.env configuration**
+- **Git / GitHub Workflow (dev/v1.0.0 → prod/v1.0.0)**
 
-## 🚀 Özellikler
+## 🚀 Features
 
-- **OAuth Entegrasyonu:** Auth0 üzerinden Google ile giriş yapılabilir.
-- **Rol Bazlı Yetkilendirme:**  
-  - `admin`, `editor`, `user` olmak üzere 3 farklı rol mevcuttur.  
-  - Yeni kayıt olan kullanıcıya varsayılan olarak `user` rolü atanır (backend API üzerinden).
-- **Protected Routes:** Route erişimleri middleware aracılığıyla role göre sınırlandırılır.
-- **Session Management:** NextAuth.js üzerinden JWT tabanlı session kontrolü yapılır.
-- **Docker Desteği:** Proje containerized çalışacak şekilde yapılandırılmıştır.
+- **OAuth Integration:** Sign in via Auth0 (e.g., Google).
+- **Role-Based Access Control:**
+  - Three roles: `admin`, `editor`, `user`
+  - New users are automatically assigned the `user` role via backend
+- **Protected Routes:** Pages are secured via Next.js middleware based on role
+- **Session Management:** JWT-based sessions with NextAuth.js
+- **Docker Support:** Project is container-ready for local or production environments
 
-## 🔐 Yetki Seviyeleri
+## 🔐 Route Access by Role
 
-| Kullanıcı Rolü | Erişebildiği Sayfalar     |
-|----------------|----------------------------|
-| `admin`        | `/admin`, `/editor`, `/user` |
-| `editor`       | `/editor`, `/user`        |
-| `user`         | `/user`                   |
+| Role   | Accessible Routes                  |
+|--------|------------------------------------|
+| admin  | `/admin`, `/editor`, `/user`       |
+| editor | `/editor`, `/user`                 |
+| user   | `/user`                            |
 
-## 👤 Test Kullanıcıları
+## 👤 Demo Accounts
 
-Sistemde deneme amaçlı 3 kullanıcı mevcuttur:
+You can test the system using the following demo users:
 
-| Rol    | E-posta               | Şifre        |
-|--------|------------------------|--------------|
-| admin  | `admin@gmail.com`     | `denemeA11+` |
-| editor | `editor@gmail.com`    | `denemeA11+` |
-| user   | `user@gmail.com`      | `denemeA11+` |
+| Role   | Email               | Password     |
+|--------|---------------------|--------------|
+| admin  | `admin@gmail.com`   | `denemeA11+` |
+| editor | `editor@gmail.com`  | `denemeA11+` |
+| user   | `user@gmail.com`    | `denemeA11+` |
 
-## ⚙️ Kurulum
+## ⚙️ Setup Instructions
 
 ```bash
-# 1. Bağımlılıkları yükleyin
+# 1. Install dependencies
 npm install
 
-# 2. .env.local dosyasını oluşturun ve Auth0/NextAuth bilgilerinizi girin
+# 2. Create and configure .env.local
 cp .env.example .env.local
 
-# 3. Geliştirme sunucusunu başlatın
+# 3. Run development server
 npm run dev
