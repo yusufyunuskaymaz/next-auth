@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Auth0 Yetkilendirme Sistemi - Next.js & NextAuth.js
 
-## Getting Started
+Bu proje, OAuth tabanlı kimlik doğrulama ve rol bazlı yetkilendirme sistemi geliştirmek amacıyla hazırlanmıştır. Uygulama, Auth0 üzerinden kullanıcı yönetimi yapar, NextAuth.js ile oturum kontrolü sağlar ve Next.js middleware yapısıyla route'ları korur. Proje, SOLID prensiplerine ve 12 Factor App ilkelerine uygun şekilde yapılandırılmıştır.
 
-First, run the development server:
+## 🔧 Kullanılan Teknolojiler
+
+- **Next.js 14+ (App Router)**
+- **NextAuth.js**
+- **Auth0 (OAuth Provider)**
+- **JWT (JSON Web Token)**
+- **TypeScript**
+- **TailwindCSS** (Login UI)
+- **Docker**
+- **.env yapılandırması**
+- **Git / GitHub Flow (dev/v1.0.0 → prod/v1.0.0)**
+
+## 🚀 Özellikler
+
+- **OAuth Entegrasyonu:** Auth0 üzerinden Google ile giriş yapılabilir.
+- **Rol Bazlı Yetkilendirme:**  
+  - `admin`, `editor`, `user` olmak üzere 3 farklı rol mevcuttur.  
+  - Yeni kayıt olan kullanıcıya varsayılan olarak `user` rolü atanır (backend API üzerinden).
+- **Protected Routes:** Route erişimleri middleware aracılığıyla role göre sınırlandırılır.
+- **Session Management:** NextAuth.js üzerinden JWT tabanlı session kontrolü yapılır.
+- **Docker Desteği:** Proje containerized çalışacak şekilde yapılandırılmıştır.
+
+## 🔐 Yetki Seviyeleri
+
+| Kullanıcı Rolü | Erişebildiği Sayfalar     |
+|----------------|----------------------------|
+| `admin`        | `/admin`, `/editor`, `/user` |
+| `editor`       | `/editor`, `/user`        |
+| `user`         | `/user`                   |
+
+## 👤 Test Kullanıcıları
+
+Sistemde deneme amaçlı 3 kullanıcı mevcuttur:
+
+| Rol    | E-posta               | Şifre        |
+|--------|------------------------|--------------|
+| admin  | `admin@gmail.com`     | `denemeA11+` |
+| editor | `editor@gmail.com`    | `denemeA11+` |
+| user   | `user@gmail.com`      | `denemeA11+` |
+
+## ⚙️ Kurulum
 
 ```bash
+# 1. Bağımlılıkları yükleyin
+npm install
+
+# 2. .env.local dosyasını oluşturun ve Auth0/NextAuth bilgilerinizi girin
+cp .env.example .env.local
+
+# 3. Geliştirme sunucusunu başlatın
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
